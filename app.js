@@ -15,22 +15,17 @@ function comma(n) {
 
 btn.addEventListener("click", async () => {
   const q = (qInput?.value || "낚시").trim() || "낚시";
-
   out.innerHTML = `<tr><td colspan="6">불러오는 중...</td></tr>`;
 
-  // ✅ 백엔드가 이제 n/days/min/pages를 받아줌
-  const url = `/api/rank?q=${encodeURIComponent(q)}&n=30&days=7&min=10&pages=10`;
+  // ✅ TOP 50 / 최근7일 / 10분+ / search 2페이지(최대 100개 후보)
+  const url = `/api/rank?q=${encodeURIComponent(q)}&limit=50&minSec=600&days=7&pages=2`;
+
   const res = await fetch(url);
   const data = await res.json();
 
   if (!res.ok) {
-    out.innerHTML = `<tr><td colspan="6">에러: ${data.error || res.status}</td></tr>`;
-    return;
-  }
-
-  // ✅ 백엔드가 500으로 내려준 detail도 화면에서 보이게
-  if (data?.error && data?.detail) {
-    out.innerHTML = `<tr><td colspan="6">에러: ${data.error}<br/>${JSON.stringify(data.detail).slice(0, 800)}</td></tr>`;
+    const msg = data?.error || `HTTP ${res.status}`;
+    out.innerHTML = `<tr><td colspan="6">에러: ${msg}</td></tr>`;
     return;
   }
 
@@ -38,11 +33,11 @@ btn.addEventListener("click", async () => {
 
   data.forEach((r, i) => {
     const weeklyViews = toInt(r.weeklyViews);
-    const longVideos = toInt(r.longCount);
-    const channel = r.channel || "-";
-    const published = r.topVideoPublishedAt || "-";
-    const title = r.topVideoTitle || "보기";
-    const link = r.topVideoUrl || "";
+    const longVideos  = toInt(r.longCount);
+    const channel     = r.channel || "-";
+    const published   = r.topVideoPublishedAt || "-";
+    const title       = r.topVideoTitle || "보기";
+    const link        = r.topVideoUrl || "";
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
