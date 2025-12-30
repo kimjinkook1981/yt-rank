@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>유튜브 주간 채널 순위</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { margin-bottom: 12px; }
+    .row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; align-items: center; }
+    input { padding: 8px; width: 240px; }
+    button { padding: 8px 14px; cursor: pointer; }
+    small { color: #666; }
+    table { border-collapse: collapse; width: 100%; max-width: 1200px; }
+    th, td { border: 1px solid #ccc; padding: 8px; }
+    th { background: #f2f2f2; }
+    td:nth-child(1),
+    td:nth-child(3),
+    td:nth-child(4),
+    td:nth-child(5) { text-align: center; white-space: nowrap; }
+    td:nth-child(6) a { word-break: break-word; }
+  </style>
+</head>
+<body>
+
+<h1>유튜브 주간 채널 순위 (TOP 30)</h1>
+
+<div class="row">
+  <input id="q" value="낚시" placeholder="예: 낚시" />
+  <button id="btn">검색</button>
+  <small>기준: 최근 7일 · 10분+ · 조회수 합산 · 대표영상=조회수 최대</small>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>순위</th>
+      <th>채널</th>
+      <th>주간 합산조회수</th>
+      <th>10분+ 영상수</th>
+      <th>업로드 날짜</th>
+      <th>대표영상</th>
+    </tr>
+  </thead>
+  <tbody id="out"></tbody>
+</table>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

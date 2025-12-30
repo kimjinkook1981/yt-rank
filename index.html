@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>유튜브 주간 채널 순위</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    table { border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 6px 10px; }
+    th { background: #000000; }
+  </style>
+</head>
+<body>
+
+  <h1>유튜브 주간 채널 순위</h1>
+
+  <input id="q" value="낚시" />
+  <button id="btn">검색</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>순위</th>
+        <th>채널</th>
+        <th>주간 합산조회수</th>
+        <th>10분+ 영상수</th>
+        <th>대표영상</th>
+      </tr>
+    </thead>
+    <tbody id="out"></tbody>
+  </table>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
